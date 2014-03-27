@@ -3,7 +3,6 @@
 
 	class Users  {
 
-<<<<<<< HEAD
 		static public function Get($id = null)
 		{
 			$sql = "SELECT U.*, K.Name as UserType_Name
@@ -39,30 +38,6 @@
 						(FirstName, LastName, Password, fbid, UserType)
 						VALUES ('$row[FirstName]', '$row[LastName]', '$row[Password]', '$row[fbid]', '$row[UserType]' ) ";				
 			}
-=======
-static public function Get($id = null)
-{
-if($id == null){
-// Get all records
-$sql = "SELECT U.*, K.Name as UserType_Name
-FROM 2013Fall_Users U Join 2013Fall_Keywords K ON U.UserType = K.id
-";
-return fetch_all($sql);
-}else{
-// Get on record
-}
-}
-
-static public function Create($row)
-{
-$conn = GetConnection();
-$sql = "INSERT INTO 2013Fall_Users (FirstName, LastName, ) VALUES ('$row[FirstName]', '$row[LastName]' ) ";
-$results = $conn->query($sql);
-$conn->close();
-
-return $arr;
-}
->>>>>>> ced1195ede2e1b1d5deb7b43def84198a2b2d184
 
 
 			//echo $sql;
@@ -96,4 +71,3 @@ return $arr;
 		}
 
 	}
-
