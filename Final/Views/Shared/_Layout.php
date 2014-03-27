@@ -11,9 +11,15 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
     <style type="text/css">
+<<<<<<< HEAD
     	body {
 		  padding-top: 50px;
 		}
+=======
+     body {
+padding-top: 50px;
+}
+>>>>>>> ced1195ede2e1b1d5deb7b43def84198a2b2d184
     </style>
   </head>
 
@@ -45,6 +51,7 @@
       <? include $view; ?>
 
 
+<<<<<<< HEAD
     </div><!-- /.container -->
 
 
@@ -59,4 +66,20 @@
     	}
     ?>
   </body>
+=======
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<?
+     if(function_exists("JavaScripts")){
+     JavaScripts();
+     }
+    ?>
+</body>
+>>>>>>> ced1195ede2e1b1d5deb7b43def84198a2b2d184
 </html>
