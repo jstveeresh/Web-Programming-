@@ -1,7 +1,7 @@
 <?php
 	include_once __DIR__ . '/../inc/functions.php';
 	
-	class Users  {
+	class Order_Items  {
 		
 		static public function Get($id = null)
 		{

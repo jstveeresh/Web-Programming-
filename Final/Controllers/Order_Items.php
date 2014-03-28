@@ -38,10 +38,10 @@
 
 	switch ($format) {
 		case 'plain':
-			include __DIR__ . "/../Views/Users/$view.php";			
+			include __DIR__ . "/../Views/Order_Items/$view.php";			
 			break;
 		default:
-			$view = __DIR__ . "/../Views/Users/$view.php";	
+			$view = __DIR__ . "/../Views/Order_Items/$view.php";	
 			include __DIR__ . "/../Views/Shared/_Layout.php";
 			break;
 	}
