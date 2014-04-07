@@ -1,5 +1,4 @@
 <?php
-
 	include_once __DIR__ . '/../inc/functions.php';
 	include_once __DIR__ . '/../inc/allModels.php';
 	
@@ -15,12 +14,13 @@
 			$model = Users::Get($_REQUEST['id']);
 			break;
 		case 'save':
-			$errors = Users::Validate($_REQUEST);
+			$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
+			//$errors = Users::Validate($_REQUEST);
 			if(!$errors){
 				$errors = Users::Save($_REQUEST);
 			}
 			if(!$errors){
-				header("Location: ?");
+				header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
 				die();
 			}else{
 				//print_r($errors);
@@ -35,7 +35,7 @@
 			$model = Users::Get();
 			if($view == null) $view = 'index';
 	}
-
+	
 	switch ($format) {
 		case 'plain':
 			include __DIR__ . "/../Views/Users/$view.php";			
@@ -45,4 +45,3 @@
 			include __DIR__ . "/../Views/Shared/_Layout.php";
 			break;
 	}
-
