@@ -6,7 +6,7 @@
 		static public function Get($id = null)
 		{
 			$sql = "SELECT U.*, K.Name as UserType_Name
-					FROM 2014Spring_Users U Join 2014Spring_Keywords K ON U.UserType = K.id
+					FROM 2013Fall_Users U Join 2013Fall_Keywords K ON U.UserType = K.id
 				   ";
 			if($id == null){
 				//	Get all records
@@ -29,7 +29,7 @@
 			
 			$row2 = escape_all($row, $conn);
 			if (!empty($row['id'])) {
-				$sql = "Update 2014Spring_Users
+				$sql = "Update 2013Fall_Users
 							Set FirstName='$row2[FirstName]', LastName='$row2[LastName]',
 								Password='$row2[Password]', fbid='$row2[fbid]', UserType='$row2[UserType]'
 						WHERE id = $row2[id]
@@ -61,7 +61,14 @@
 			
 		static public function Delete($id)
 		{
+			$conn = GetConnection();
+			$sql = "DELETE FROM 2013Fall_Users WHERE id = $id";
+			//echo $sql;
+			$results = $conn->query($sql);
+			$error = $conn->error;
+			$conn->close();
 			
+			return $error ? array ('sql error' => $error) : false;
 		}
 		
 		static public function Validate($row)
@@ -77,4 +84,14 @@
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
