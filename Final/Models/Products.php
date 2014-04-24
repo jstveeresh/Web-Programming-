@@ -3,48 +3,37 @@
 	
 	class Products  {
 		
-		static public function Get($id = null)
+		static public function Get($id = null, $category_id = null)
 		{
-			$sql = "SELECT U.*, K.Name as UserType_Name
-					FROM 2014Spring_Users U Join 2014Spring_Keywords K ON U.UserType = K.id
+			$sql = "SELECT *
+					FROM 2014Spring_Products
 				   ";
-			if($id == null){
-				//	Get all records
-				return fetch_all($sql);
-			}else{
+			if($id){
 				// Get one record
-				
-				$sql .= " WHERE U.id = $id ";
+				$sql .= " WHERE id = $id ";
 				if(($results = fetch_all($sql)) && count($results) > 0){
 					return $results[0];
 				}else{
 					return null;
 				}
+			}elseif($category_id){
+				$sql .= " WHERE Product_Category_id = $category_id ";
+				return fetch_all($sql);
+			}else{
+				//	Get all records
+				return fetch_all($sql);
 			}
 		}
 		
-		static public function Save($row)
+		static public function GetCategories()
 		{
-			$conn = GetConnection();
-			
-			$row = escape_all($row, $conn);
-			if (!empty($row['id'])) {
-				$sql = "Update 2014Spring_Users
-							Set FirstName='$row[FirstName]', LastName='$row[LastName]',
-								Password='$row[Password]', fbid='$row[fbid]', UserType='$row[UserType]'
-						WHERE id = $row[id]
-						";
-			}else{
-				$sql = "INSERT INTO 2014Spring_Users
-						(FirstName, LastName, Password, fbid, UserType)
-						VALUES ('$row[FirstName]', '$row[LastName]', '$row[Password]', '$row[fbid]', '$row[UserType]' ) ";				
-			}
-			
-			
-			//echo $sql;
-			$results = $conn->query($sql);
-			$error = $conn->error;
-			$conn->close();
+			$sql = "SELECT * FROM 2014Spring_Product_Categories";
+			return fetch_all($sql);
+		}
+		
+		static public function Save(&$row)
+		{
+			throw new Exception("Not Implemented", 1);
 			
 			return $error ? array ('sql error' => $error) : false;
 		}
@@ -56,20 +45,33 @@
 			
 		static public function Delete($id)
 		{
+			$conn = GetConnection();
+			$sql = "DELETE FROM 2014spring_Products WHERE id = $id";
+			//echo $sql;
+			$results = $conn->query($sql);
+			$error = $conn->error;
+			$conn->close();
 			
+			return $error ? array ('sql error' => $error) : false;
 		}
 		
 		static public function Validate($row)
 		{
 			$errors = array();
-			if(empty($row['FirstName'])) $errors['FirstName'] = "is required";
-			if(empty($row['LastName'])) $errors['LastName'] = "is required";
-			
-			if(!is_numeric($row['UserType'])) $errors['UserType'] = "must be a number";
-			if(empty($row['UserType'])) $errors['UserType'] = "is required";
+			if(empty($row['Name'])) $errors['Name'] = "is required";
 			
 			return count($errors) > 0 ? $errors : false ;
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

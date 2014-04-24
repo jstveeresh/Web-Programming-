@@ -4,7 +4,7 @@
 	function GetConnection(){
 		global $password;
 		
-		$conn = mysqli_connect('localhost', 'gandikov1', $password, 'gandikov1_db');
+		$conn = mysqli_connect('localhost', 'plotkinm', $password, 'plotkinm_db');
 		return $conn;
 	}
 	
